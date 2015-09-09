@@ -66,27 +66,26 @@
 
     <video src="video/wine_pouring.mp4" controls preload="none" width="480" height="270" poster="video/poster.png"></video>
 
-    <p>Looping a video using the <code>loop</code> attribute. This is a boolean attribute so, you cannot control the number of times
-    the video loops.</p>
+    <p>Looping a video using the <code>loop</code> boolean attribute.</p>
 
 <pre>
 <code>
-&lt;video src="video/record_stock.mp4" controls width="490" height="270" loop="true">&lt;/video>
+&lt;video src="video/record_stock.mp4" controls width="490" height="270" loop>&lt;/video>
 </code>
 </pre>
 
-    <video src="video/record_stock.mp4" controls width="490" height="270" loop="true"></video>
+    <video src="video/record_stock.mp4" controls width="490" height="270" loop></video>
 
-    <p>You can mute the audio track by setting the <code>mute</code> attribute to true. This does not however prevent the user from
+    <p>You can mute the audio track by setting the <code>mute</code> boolean attribute. This does not however prevent the user from
     enabling audio manually.</p>
 
 <pre>
 <code>
-&lt;video src="video/record_stock.mp4" controls width="490" height="270" muted="true">&lt;/video>
+&lt;video src="video/record_stock.mp4" controls width="490" height="270" muted>&lt;/video>
 </code>
 </pre>
 
-    <video src="video/record_stock.mp4" controls width="490" height="270" muted="true"></video>
+    <video src="video/record_stock.mp4" controls width="490" height="270" muted></video>
 
     <p>Managing passing credentials along with you video asset requests can be handled by using the <code>crossorigin</code>
       attribute on the <code>video</code> element. The <code>crossorigin</code> attribute has one of two possible values:</p>
