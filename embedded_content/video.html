@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The video Element</title>
+  </head>
+  <body>
+    <h1><code>video</code></h1>
+    <p>The most basic use of the video element. (Not a best practice as there is no fallback content for browsers that do not
+      support the codec or the video element itself.)</p>
+
+<pre>
+<code>
+&lt;video src="video/the_simpsons.mp4.mp4" controls>&lt;/video>
+</code>
+</pre>
+
+    <video src="video/the_simpsons.mp4.mp4" controls></video>
+
+    <p>Create <code>video</code> element, but do not load any data.</p>
+
+<pre>
+<code>
+&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/the_simpsons.mp4.mp4" controls preload="none"></video>
+
+    <p>Create <code>video</code> element, and only load metadata.</p>
+
+<pre>
+<code>
+&lt;video src="video/the_simpsons.mp4.mp4" controls preload="metadata">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/the_simpsons.mp4.mp4" controls preload="metadata"></video>
+
+    <p>Because of the differences in behavior between browser implementations when it comes to <code>preload="metadata"</code>,
+      and the default behavior when specifying <code>preload="none"</code> it's best to always specify the width and height of
+      the video element when played.</p>
+
+<pre>
+<code>
+&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="480">&lt;/video>
+&lt;video src="video/the_simpsons.mp4.mp4" controls preload="metadata" width="640" height="480">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="480"></video>
+    <video src="video/the_simpsons.mp4.mp4" controls preload="metadata" width="640" height="480"></video>
+
+    <p>Also note that by default, the <code>video</code> element is displayed inline. This means that two <code>video</code> elements
+      will be displayed horizontally, instead of stacked vertically, dependant on the individual video size and the width of
+      the browser window.</p>
+
+    <p>Showing a static image instead of the default gray or black block, is as simple as using the <code>poster</code> attribute
+      and specifying an image.</p>
+
+<pre>
+<code>
+&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="270" poster="video/poster.png">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="270" poster="video/poster.png"></video>
+
+    <p>Looping a video using the <code>loop</code> attribute. This is a boolean attribute so, you cannot control the number of times
+    the video loops.</p>
+
+<pre>
+<code>
+&lt;video src="video/record_stock.mp4" controls width="490" height="270" loop="true">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/record_stock.mp4" controls width="490" height="270" loop="true"></video>
+
+    <p>You can mute the audio track by setting the <code>mute</code> attribute to true. This does not however prevent the user from
+    enabling audio manually.</p>
+
+<pre>
+<code>
+&lt;video src="video/record_stock.mp4" controls width="490" height="270" muted="true">&lt;/video>
+</code>
+</pre>
+
+    <video src="video/record_stock.mp4" controls width="490" height="270" muted="true"></video>
+
+    <p>Managing passing credentials along with you video asset requests can be handled by using the <code>crossorigin</code>
+      attribute on the <code>video</code> element. The <code>crossorigin</code> attribute has one of two possible values:</p>
+
+    <ol>
+      <li>anonymous - Whilst the name suggests that no credential flags are posted, it is not correct. Anonymous passes
+        credential flags for local requests but, not for cross origin requests.</li>
+      <li>use-credentials - This always sets the credential flag for all requests, local or remote (CORS).</li>
+    </ol>
+
+<pre>
+<code>
+&lt;video src="video/record_stock.mp4" controls width="490" height="270" crossorigin="use-credentials">&lt;/video>
+</code>
+</pre>
+
+  <p>A typical use case for local video requests, using the <code>anonymous</code> value for the attribute, would be when
+    you show two different videos to a user based on for exmaple their logged in status.</p>
+
+  <p>A possible use case for the <code>use-credentials</code> value, could be if you are serving your videos
+    using a third party and need to authenticate against the service before video will be streamed. Perhaps you need
+    to pass a token to identify your site allowing the third party to monitor usage.</p>
+
+  <p>This feature is still under discussion and you can read related discussions here:</p>
+
+  <ul>
+    <li><a href="https://github.com/whatwg/html/issues/95">Fetch integration [Github]</a></li>
+    <li><a href="https://fetch.spec.whatwg.org/#http-network-fetch">HTTP-network fetch</a></li>
+  </ul>
+  </body>
+</html>
