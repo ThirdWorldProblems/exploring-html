@@ -11,31 +11,31 @@
 
 <pre>
 <code>
-&lt;video src="video/the_simpsons.mp4.mp4" controls>&lt;/video>
+&lt;video src="video/wine_pouring.mp4" controls>&lt;/video>
 </code>
 </pre>
 
-    <video src="video/the_simpsons.mp4.mp4" controls></video>
+    <video src="video/wine_pouring.mp4" controls></video>
 
     <p>Create <code>video</code> element, but do not load any data.</p>
 
 <pre>
 <code>
-&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none">&lt;/video>
+&lt;video src="video/wine_pouring.mp4" controls preload="none">&lt;/video>
 </code>
 </pre>
 
-    <video src="video/the_simpsons.mp4.mp4" controls preload="none"></video>
+    <video src="video/wine_pouring.mp4" controls preload="none"></video>
 
     <p>Create <code>video</code> element, and only load metadata.</p>
 
 <pre>
 <code>
-&lt;video src="video/the_simpsons.mp4.mp4" controls preload="metadata">&lt;/video>
+&lt;video src="video//wine_pouring.mp4" controls preload="metadata">&lt;/video>
 </code>
 </pre>
 
-    <video src="video/the_simpsons.mp4.mp4" controls preload="metadata"></video>
+    <video src="video//wine_pouring.mp4" controls preload="metadata"></video>
 
     <p>Because of the differences in behavior between browser implementations when it comes to <code>preload="metadata"</code>,
       and the default behavior when specifying <code>preload="none"</code> it's best to always specify the width and height of
@@ -43,13 +43,13 @@
 
 <pre>
 <code>
-&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="480">&lt;/video>
-&lt;video src="video/the_simpsons.mp4.mp4" controls preload="metadata" width="640" height="480">&lt;/video>
+&lt;video src="video/wine_pouring.mp4" controls preload="none" width="480" height="270">&lt;/video>
+&lt;video src="video/wine_pouring.mp4" controls preload="metadata" width="480" height="270">&lt;/video>
 </code>
 </pre>
 
-    <video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="480"></video>
-    <video src="video/the_simpsons.mp4.mp4" controls preload="metadata" width="640" height="480"></video>
+    <video src="video/wine_pouring.mp4" controls preload="none" width="480" height="270"></video>
+    <video src="video/wine_pouring.mp4" controls preload="metadata" width="480" height="270"></video>
 
     <p>Also note that by default, the <code>video</code> element is displayed inline. This means that two <code>video</code> elements
       will be displayed horizontally, instead of stacked vertically, dependant on the individual video size and the width of
@@ -60,11 +60,11 @@
 
 <pre>
 <code>
-&lt;video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="270" poster="video/poster.png">&lt;/video>
+&lt;video src="video/wine_pouring.mp4" controls preload="none" width="480" height="270" poster="video/poster.png">&lt;/video>
 </code>
 </pre>
 
-    <video src="video/the_simpsons.mp4.mp4" controls preload="none" width="640" height="270" poster="video/poster.png"></video>
+    <video src="video/wine_pouring.mp4" controls preload="none" width="480" height="270" poster="video/poster.png"></video>
 
     <p>Looping a video using the <code>loop</code> attribute. This is a boolean attribute so, you cannot control the number of times
     the video loops.</p>
