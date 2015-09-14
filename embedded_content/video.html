@@ -87,13 +87,13 @@
 
     <video src="video/record_stock.mp4" controls width="490" height="270" muted></video>
 
-    <p>Managing passing credentials along with you video asset requests can be handled by using the <code>crossorigin</code>
+    <p>Passing credentials along with you video asset requests can be done using the <code>crossorigin</code>
       attribute on the <code>video</code> element. The <code>crossorigin</code> attribute has one of two possible values:</p>
 
     <ol>
-      <li>anonymous - Whilst the name suggests that no credential flags are posted, it is not correct. Anonymous passes
-        credential flags for local requests but, not for cross origin requests.</li>
-      <li>use-credentials - This always sets the credential flag for all requests, local or remote (CORS).</li>
+      <li>anonymous - Whilst the name suggests that no credential flags are set, this is not true. When set to anonymous
+        credential flags are posted for local requests but, not for cross origin requests.</li>
+      <li>use-credentials - This always sets the credential flag for all requests, local or remote.</li>
     </ol>
 
 <pre>
