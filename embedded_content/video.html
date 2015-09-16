@@ -87,33 +87,35 @@
 
     <video src="video/record_stock.mp4" controls width="490" height="270" muted></video>
 
-    <p>Passing credentials along with you video asset requests can be done using the <code>crossorigin</code>
-      attribute on the <code>video</code> element. The <code>crossorigin</code> attribute has one of two possible values:</p>
+    <p>When a video is loaded by the user agent it goes through various steps before the video is loaded and played. One of these steps is called the <a href="https://html.spec.whatwg.org/#concept-media-load-algorithm">resource selection algorithm</a>. As the name suggests, this is where the user agent will select which of the specififed media elements it will play, based on outcomes such as whether the media type can be played by the user agent or, whether loading of the media resource was successfull or failed.</p>
+
+    <p>There are a couple of ways a media resource location can be specified to the user agent. It can be specified as a media provider object, which can be one of <a href="https://html.spec.whatwg.org/#mediastream">MediaStream</a>, <a href="https://html.spec.whatwg.org/#mediasource">MediaSource</a>, <a href="https://html.spec.whatwg.org/#blob">Blob</a> or, <a href="https://html.spec.whatwg.org/#file">File</a>.</p>
+
+    <p>It can also be specified using the <code>src</code> attribute of the video element or, specifying one or more resource locations using nested <code>source</code> elements.</p>
+
+    <p>Once the user agent has selected the media resource to load, it calls the <a href="https://html.spec.whatwg.org/#concept-media-load-resource">resource fetch algorithm</a>. This algorithm has one of two paths it can follow and, for all but when called with an object, as defined above, this will be called with a URL and follow the "mode is remote" path.</p>
+
+    <p>In general a user of the video element will not be overly concerned about this process. However, if you wish to do more with video data that is loaded via a cross-origin request, you need to be aware of this process and in particular, the <code>crossorigin</code> attribute and it's role.<p>
+
+    <p>The <code>crossorigin</code> attribute has one of two possible values:</p>
 
     <ol>
-      <li>anonymous - Whilst the name suggests that no credential flags are set, this is not true. When set to anonymous
-        credential flags are posted for local requests but, not for cross origin requests.</li>
-      <li>use-credentials - This always sets the credential flag for all requests, local or remote.</li>
+      <li>anonymous</li>
+      <li>use-credentials</li>
     </ol>
+
+    <p>It is important to note that what follows relates to the <a href="https://fetch.spec.whatwg.org/">Fetch standard</a> which is <a href="https://github.com/whatwg/html/issues/95">still in process</a>. When you use the <code>crossorigin</code> attribute it sets the <code>use-URL-credentials</code> flag and maps <code>anonymous</code> to "same-origin" and <code>use-credentails</code> to "include" for the <code>crendentials mode</code>. If you omit the <code>crossorigin</code> attribute, <code>use-URL-credentials</code> is unset and, the default for <code>credentials mode</code> is assumed, which is omit.</p>
+
+    <p>The use or omision of the <code>crossorigin</code> attribute then also plays a role in the <a href="https://fetch.spec.whatwg.org/#http-access-control-allow-credentials"><code>Access-Control-Allow-Credentials</code></a> Fetch header in determining whether access to a resource should be allowed if credentials mode is set to "include"[<code>use-credentials</code>].</p>
+
+    <p>Using <code>crossorigin</code> when loading data from third parties is especially important if you want to use the data obtained for anything more than basic interactions. If a video has associated metadata related to subtitle tracks or chapter titles for example, it will not be loaded if a CORS <a href="https://html.spec.whatwg.org/#security-and-privacy-considerations:resource-sharing-check">resource sharing check</a> is not passed. As such, if you require access to this metadata and it is protected you will need to set <code>crossorigin</code> to "use-credentials". </p>
+
+    <p>Another example of where the use of this attribute is important is when painting the video data to a <code>canvas</code>. If the CORS resource sharing check fails in this scenario, the <a href="https://html.spec.whatwg.org/#concept-canvas-origin-clean"><code>origin-clean</code></a> flag of the canvas will be set to false,tainting the <code>canvas</code>, and subsequent calls to the element's <code>toDataURL()</code>, <code>toBlob()</code>, and <code>getImageData()</code> functions will result in a <code>SecurityError</code> to prevent leaking cross-origin data.</p>
 
 <pre>
 <code>
 &lt;video src="video/record_stock.mp4" controls width="490" height="270" crossorigin="use-credentials">&lt;/video>
 </code>
 </pre>
-
-  <p>A typical use case for local video requests, using the <code>anonymous</code> value for the attribute, would be when
-    you show two different videos to a user based on for exmaple their logged in status.</p>
-
-  <p>A possible use case for the <code>use-credentials</code> value, could be if you are serving your videos
-    using a third party and need to authenticate against the service before video will be streamed. Perhaps you need
-    to pass a token to identify your site allowing the third party to monitor usage.</p>
-
-  <p>This feature is still under discussion and you can read related discussions here:</p>
-
-  <ul>
-    <li><a href="https://github.com/whatwg/html/issues/95">Fetch integration [Github]</a></li>
-    <li><a href="https://fetch.spec.whatwg.org/#http-network-fetch">HTTP-network fetch</a></li>
-  </ul>
   </body>
 </html>
